@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import HomePage from '../components/HomePage';
+import LoginPage from '../components/LoginPage';
+import TopConfessions from '../components/TopConfessions.jsx';
+import ConfessionPage from '../components/ConfessionPage';
+import { AnimatePresence } from 'framer-motion';
+import About from '../components/About.jsx'
+import leftGirl from '/leftgirl-removebg-preview.png'; // Import the image
+import './App.css'; // Import the CSS file
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.body.clientHeight;
+
+      const percentage = (scrollY / (fullHeight - windowHeight)) * 100;
+      setScrollPercentage(percentage);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='scrollSpace'>
+          {scrollPercentage >= 15 && scrollPercentage < 85 && (
+            <div className='leftGirl' style={{ backgroundImage: `url(${leftGirl})` }}></div>
+          )}
+      <div className='anime-container'>
+      
+        <div style={{ marginBottom: '1rem' }}>Scroll Percentage: {scrollPercentage.toFixed(2)}%</div>
+        <div className='navBar'>
+        
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='sticker'>
+        <div style={{ height: '85vh', width: '80vw', marginTop: '5vh', border: '10px solid white', borderRadius: '40px', position: 'relative', backgroundImage: `url('/rose.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <AnimatePresence>
+            {scrollPercentage >= 0 && scrollPercentage < 15 && <HomePage />}
+            {scrollPercentage >= 15 && scrollPercentage < 60 && <LoginPage />}
+            {scrollPercentage >= 60 && scrollPercentage < 85 && <ConfessionPage />}
+            {scrollPercentage >= 85 && <About />}
+            </AnimatePresence>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
