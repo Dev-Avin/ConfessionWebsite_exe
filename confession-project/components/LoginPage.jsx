@@ -8,6 +8,7 @@ import instagram from './assets/instagram.png';
 import message from './assets/message.png';
 import eyes from './assets/eyes.png';
 import save from './assets/Save.png';
+import acco from './assets/acco.png';
 
 const optionArray = [
   {
@@ -51,9 +52,9 @@ const navArr = [
 ];
 
 const LoginPage = () => {
-  const [UserName, setUserName] = useState('Anonymous');
+  const [UserName, setUserName] = useState('Anon');
   const [largeParagraph, setLargeParagraph] = useState('');
-  const [Content , setContent] = useState('Null');
+  const [Content , setContent] = useState('');
   
   return (
     <motion.div 
@@ -67,7 +68,7 @@ const LoginPage = () => {
         <h3 style={{ color: '#00327d', textShadow: 'rgba(0,0,0,0.5) 0.1em 0.1em' }}>TEAM EXE</h3>
         <div className='flexCont'>
           <div className='accountImg'>
-            {/* Implement Logic As PER Your OWN IDEA */}
+            <img className='accountImge' src={acco} alt="User" />
           </div>
           <div>
             <p className='text'>{UserName}</p>
@@ -104,7 +105,14 @@ const LoginPage = () => {
       <motion.div className='flexChild topConfession' initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
         <h2 style={{ color: '#00327d' }}>Confession Of The Day</h2>
         <div className='whiteDiv'>
-          <div className='gradientDiv'>{Content}</div>
+          <div className='gradientDiv'>
+            <h3>Secret Crush,21 F</h3>
+            <p style={{color:'blue'}}>
+            
+I've had a secret crush on my best friend for years. Every time I see him, my heart skips a beat, but I've never had the courage to tell him.
+
+            </p>
+          </div>
         </div>
         <div>
           <button className='gradButton'>See More</button>

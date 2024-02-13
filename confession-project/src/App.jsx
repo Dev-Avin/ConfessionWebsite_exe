@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import HomePage from '../components/HomePage';
 import LoginPage from '../components/LoginPage';
-import TopConfessions from '../components/TopConfessions.jsx';
 import ConfessionPage from '../components/ConfessionPage';
 import { AnimatePresence } from 'framer-motion';
+import Animated from './Animated.jsx'
 import About from '../components/About.jsx'
 import leftGirl from '/leftgirl-removebg-preview.png'; // Import the image
 import './App.css'; // Import the CSS file
@@ -34,11 +34,7 @@ const App = () => {
             <div className='leftGirl' style={{ backgroundImage: `url(${leftGirl})` }}></div>
           )}
       <div className='anime-container'>
-      
-        <div style={{ marginBottom: '1rem' }}>Scroll Percentage: {scrollPercentage.toFixed(2)}%</div>
-        <div className='navBar'>
-        
-        </div>
+      <Animated/>
       </div>
       <div className='sticker'>
         <div style={{ height: '85vh', width: '80vw', marginTop: '5vh', border: '10px solid white', borderRadius: '40px', position: 'relative', backgroundImage: `url('/rose.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
