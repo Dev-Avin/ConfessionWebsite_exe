@@ -1,5 +1,6 @@
-// ConfessionPage.jsx
+
 import React from 'react';
+import './ConfessionPage.css';
 import { motion } from 'framer-motion';
 import ConfessionModal from '../modular_comps/CofessionModal';
 
@@ -33,6 +34,7 @@ const ConfessionArr = [
 const ConfessionPage = () => {
   return (
     <motion.div 
+    className='homeContainer'
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}

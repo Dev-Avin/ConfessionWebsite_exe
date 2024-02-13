@@ -10,26 +10,32 @@ import eyes from './assets/eyes.png';
 import save from './assets/Save.png';
 import acco from './assets/acco.png';
 
+//import Confessionof the day
+var confessionofDay ={
+ title:'Secret Crush',
+ body:"I've had a secret crush on my best friend for years. Every time I see him, my heart skips a beat, but I've never had the courage to tell him."
+}
+
 const optionArray = [
   {
     id: 1,
     title: 'Account',
+    linkto: '#',
     url: account,
   },
   {
     id: 2,
-    title: 'Confessions',
+    title: 'See more',
+    linkto: './confessions',
     url: eyes,
   },
-  {
-    id: 3,
-    title: 'Favorite',
-    url: save,
-  },
+  
   {
     id: 4,
     title: 'Liked',
+    linkto: '#',
     url: heart,
+
   }
 ];
 
@@ -43,12 +49,8 @@ const navArr = [
     id: 2,
     title: 'Messages',
     url: message,
-  },
-  {
-    id: 3,
-    title: 'Call',
-    url: call,
   }
+ 
 ];
 
 const LoginPage = () => {
@@ -65,7 +67,7 @@ const LoginPage = () => {
       className="homeContainer"
     >
       <motion.div className='flexChild account' initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-        <h3 style={{ color: '#00327d', textShadow: 'rgba(0,0,0,0.5) 0.1em 0.1em' }}>TEAM EXE</h3>
+        <h1 style={{ color: '#00327d', textShadow: 'rgba(0,0,0,0.5) 0.1em 0.1em' }}>TEAM EXE</h1>
         <div className='flexCont'>
           <div className='accountImg'>
             <img className='accountImge' src={acco} alt="User" />
@@ -75,11 +77,11 @@ const LoginPage = () => {
           </div>
         </div>
         <div className='options'>
-          {optionArray.map(({ id, title, url }) => (
+          {optionArray.map(({ id, title,linkto , url }) => (
             <div className='optInd' key={id}>
-              <img src={url} alt={title} />
-              <p>{title}</p>
-            </div>
+             <img src={url} alt={title} />
+             <a href={linkto}><p>{title}</p></a>
+             </div>
           ))}
         </div>
         <div className='iconTab'>
@@ -91,8 +93,6 @@ const LoginPage = () => {
       <motion.div className='flexChild confess' style={{ color: '#00327d' }} initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
         <h1>Anonymous Voices</h1>
         <p>You can confess here too, nobody will know!</p>
-        <input className='confInput' placeholder='Gender' />
-        <input className='confInput' placeholder='Age' />
         <input className='confInput' placeholder='Title' />
         <textarea
           className='confInputMain'
@@ -106,16 +106,12 @@ const LoginPage = () => {
         <h2 style={{ color: '#00327d' }}>Confession Of The Day</h2>
         <div className='whiteDiv'>
           <div className='gradientDiv'>
-            <h3>Secret Crush,21 F</h3>
+            <h3>{confessionofDay.title}</h3>
             <p style={{color:'blue'}}>
-            
-I've had a secret crush on my best friend for years. Every time I see him, my heart skips a beat, but I've never had the courage to tell him.
+             {confessionofDay.body}
 
             </p>
           </div>
-        </div>
-        <div>
-          <button className='gradButton'>See More</button>
         </div>
       </motion.div>
     </motion.div>
